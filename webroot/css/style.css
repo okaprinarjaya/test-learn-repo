@@ -1,3 +1,7 @@
+.main-heading {
+  text-align: center;
+}
+
 .form-search-props {
   border: 1px #dddddd solid;
   padding: 10px;
@@ -136,4 +140,8 @@
       padding: 0;
       display: inline-block;
     }
+}
+
+.form-create-order .datepicker {
+  width: 100%;
 }

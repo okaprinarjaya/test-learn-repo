@@ -17,10 +17,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 </head>
 <body>
 
-
-
 <div class="grid-container fluid">
-  <header>
+  <header class="main-heading">
     <h1 class="header-title">Berkah Jeans</h1>
   </header>
 
@@ -56,7 +54,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <div class="order-grouping">
       <div class="heading-group">
         <h3><i class="fi-folder"></i>&nbsp;28 Oktober</h3>
-        <button class="button mybutton" type="button"><i class="fi-page-add"></i>&nbsp;Input order</button>
+        <button class="button mybutton" type="button" data-open="exampleModal1">
+          <i class="fi-page-add"></i>&nbsp;Input order
+        </button>
       </div>
 
       <div class="order clearfix">
@@ -65,9 +65,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
           <li><span>Pesanan</span> Celana panjang jeans</li>
           <li><span>Tgl selesai</span> 28 Oktober 2018</li>
           <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
-          <li><span>Assignee</span> -</li>
+          <li><span>Assignee</span> Taufik</li>
         </ul>
-        <p class="label-status" style="background-color: red;">Belum dikerjakan</p>
+        <p class="label-status" style="background-color: green;">Selesai</p>
       </div>
 
       <div class="order clearfix">
@@ -76,9 +76,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
           <li><span>Pesanan</span> Celana panjang jeans</li>
           <li><span>Tgl selesai</span> 28 Oktober 2018</li>
           <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
-          <li><span>Assignee</span> -</li>
+          <li><span>Assignee</span> Rian</li>
         </ul>
-        <p class="label-status" style="background-color: red;">Belum dikerjakan</p>
+        <p class="label-status" style="background-color: green;">Selesai</p>
       </div>
 
       <div class="order clearfix">
@@ -87,9 +87,20 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
           <li><span>Pesanan</span> Celana panjang jeans</li>
           <li><span>Tgl selesai</span> 28 Oktober 2018</li>
           <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
-          <li><span>Assignee</span> -</li>
+          <li><span>Assignee</span> Taufik</li>
         </ul>
         <p class="label-status" style="background-color: orange;">Sedang dikerjakan</p>
+      </div>
+
+      <div class="order clearfix">
+        <p class="order-owner"><i class="fi-torso"></i>&nbsp;&nbsp;Intan Permata</p>
+        <ul class="order-attrs">
+          <li><span>Pesanan</span> Celana panjang jeans</li>
+          <li><span>Tgl selesai</span> 28 Oktober 2018</li>
+          <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
+          <li><span>Assignee</span>-</li>
+        </ul>
+        <p class="label-status" style="background-color: red;">Belum dikerjakan</p>
       </div>
     </div>
 
@@ -100,12 +111,23 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
       </div>
 
       <div class="order clearfix">
+        <p class="order-owner"><i class="fi-torso"></i>&nbsp;&nbsp;Bayu Jolali</p>
+        <ul class="order-attrs">
+          <li><span>Pesanan</span> Celana panjang jeans</li>
+          <li><span>Tgl selesai</span> 31 Oktober 2018</li>
+          <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
+          <li><span>Assignee</span>Rian</li>
+        </ul>
+        <p class="label-status" style="background-color: orange;">Sedang dikerjakan</p>
+      </div>
+
+      <div class="order clearfix">
         <p class="order-owner"><i class="fi-torso"></i>&nbsp;&nbsp;Oka Prinarjaya</p>
         <ul class="order-attrs">
           <li><span>Pesanan</span> Celana panjang jeans</li>
           <li><span>Tgl selesai</span> 31 Oktober 2018</li>
           <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
-          <li><span>Assignee</span> -</li>
+          <li><span>Assignee</span>-</li>
         </ul>
         <p class="label-status" style="background-color: red;">Belum dikerjakan</p>
       </div>
@@ -121,20 +143,47 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         <p class="label-status" style="background-color: red;">Belum dikerjakan</p>
       </div>
 
-      <div class="order clearfix">
-        <p class="order-owner"><i class="fi-torso"></i>&nbsp;&nbsp;Bayu Jolali</p>
-        <ul class="order-attrs">
-          <li><span>Pesanan</span> Celana panjang jeans</li>
-          <li><span>Tgl selesai</span> 31 Oktober 2018</li>
-          <li><span>Tgl masuk</span> 22 Oktober 2018 15:00</li>
-          <li><span>Assignee</span> -</li>
-        </ul>
-        <p class="label-status" style="background-color: orange;">Sedang dikerjakan</p>
-      </div>
     </div>
 
   </div>
 
+</div>
+
+<div class="reveal form-create-order" id="exampleModal1" data-reveal>
+  <h3><i class="fi-page-add"></i>&nbsp;Input order baru</h3>
+  <form action="">
+    <div class="row">
+      <label>
+        <i class="fi-bookmark"></i>&nbsp;Nama pesanan *
+        <input type="text">
+      </label>
+    </div>
+
+    <div class="row">
+      <label><i class="fi-calendar"></i>&nbsp;Tanggal penyerahan pesanan *</label>
+      <div id="due-date" class="datepicker-here" data-language="en"></div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <label><i class="fi-torso"></i>&nbsp;Nama pelanggan *
+        <input type="text">
+      </label>
+    </div>
+
+    <div class="row">
+      <label><i class="fi-telephone"></i>&nbsp;No.Telp *
+        <input type="text">
+      </label>
+    </div>
+
+    <div class="contact-panel-actions">
+      <button type="submit" class="button submit-button"><i class="fi-save"></i>&nbsp;Simpan</button>
+    </div>
+  </form>
+
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
 <?php echo $this->Html->script(['jquery-3.2.1.min', 'foundation.min', 'datepicker.min', 'i18n/datepicker.en', 'app']); ?>
