@@ -65,15 +65,15 @@ class ProjectsTable extends Table
             ->notEmpty('customer_phone');
 
         $validator
-            ->date('delivery_date')
-            ->requirePresence('delivery_date', 'create')
-            ->notEmpty('delivery_date');
+            ->date('project_due_date')
+            ->requirePresence('project_due_date', 'create')
+            ->notEmpty('project_due_date');
 
         $validator
-            ->scalar('stitch_name')
-            ->maxLength('stitch_name', 32)
-            ->requirePresence('stitch_name', 'create')
-            ->notEmpty('stitch_name');
+            ->scalar('project_name')
+            ->maxLength('project_name', 32)
+            ->requirePresence('project_name', 'create')
+            ->notEmpty('project_name');
 
         return $validator;
     }

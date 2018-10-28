@@ -4,21 +4,28 @@ var searchOpened = true;
 
 $(document).ready(function() {
 
+  var dp = $('#dp').datepicker().data('datepicker');
+  dp.selectDate([new Date(), new Date()]);
+
   $('#dp').datepicker({
     onSelect: function (formattedDate, date, inst) {
       console.log('formattedDate', formattedDate)
     }
   });
 
-  $('#due-date').datepicker({
+  var due_date_dp = $('#due-date-dp').datepicker().data('datepicker');
+
+  $('#due-date-dp').datepicker({
+    dateFormat: 'yyyy-mm-dd',
     onSelect: function (formattedDate, date, inst) {
-      console.log('due date = ', formattedDate)
+      $('#project-due-date').val(formattedDate);
     }
   });
 
-  var due_date_dp = $('#due-date').datepicker().data('datepicker');
-  due_date_dp.selectDate(new Date("December 28, 2018 21:27:00"));
-
+  $('.group-button-add-order').click(function() {
+    due_date_dp.selectDate(new Date($(this).data('duedate')));
+    $('#create-order-modalbox').foundation('open');
+  });
 
   $('.toggleme').click(function() {
     $('.form-search-props').toggle('slow', function() {

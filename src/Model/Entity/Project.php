@@ -28,8 +28,10 @@ class Project extends Entity
     protected $_accessible = [
         'customer_name' => true,
         'customer_phone' => true,
-        'created' => true,
-        'delivery_date' => true,
-        'stitch_name' => true
+        'project_created' => true,
+        'project_due_date' => true,
+        'project_name' => true,
+        'project_assignee' => true,
+        'project_status' => true
     ];
 }

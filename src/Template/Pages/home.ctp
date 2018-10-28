@@ -1,13 +1,12 @@
 <?php
 $this->layout = false;
-$cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <?= $this->Html->charset() ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $cakeDescription ?></title>
+  <title>Berkah Jeans - Order Manage</title>
 
   <?= $this->Html->meta('icon') ?>
   <?= $this->Html->css('foundation.min.css') ?>
@@ -54,7 +53,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <div class="order-grouping">
       <div class="heading-group">
         <h3><i class="fi-folder"></i>&nbsp;28 Oktober</h3>
-        <button class="button mybutton" type="button" data-open="exampleModal1">
+        <button class="button mybutton group-button-add-order" type="button" data-duedate="October 28, 2018">
           <i class="fi-page-add"></i>&nbsp;Input order
         </button>
       </div>
@@ -107,7 +106,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <div class="order-grouping">
       <div class="heading-group">
         <h3><i class="fi-folder"></i>&nbsp;31 Oktober</h3>
-        <button class="button mybutton" type="button"><i class="fi-page-add"></i>&nbsp;Input order</button>
+        <button class="button mybutton group-button-add-order" type="button" data-duedate="October 31, 2018">
+          <i class="fi-page-add"></i>&nbsp;Input order
+        </button>
       </div>
 
       <div class="order clearfix">
@@ -149,37 +150,36 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
 </div>
 
-<div class="reveal form-create-order" id="exampleModal1" data-reveal>
+<div class="reveal form-create-order" id="create-order-modalbox" data-reveal>
   <h3><i class="fi-page-add"></i>&nbsp;Input order baru</h3>
-  <form action="">
+  <?php
+  echo $this->Form->create($project, ['url' => ['controller' => 'Projects', 'action' => 'add']]);
+  echo $this->Form->hidden('project_due_date', ['id' => 'project-due-date']);
+  ?>
     <div class="row">
-      <label>
-        <i class="fi-bookmark"></i>&nbsp;Nama pesanan *
-        <input type="text">
-      </label>
+      <label><i class="fi-bookmark"></i>&nbsp;Nama pesanan *</label>
+      <?php echo $this->Form->text('project_name'); ?>
     </div>
 
     <div class="row">
       <label><i class="fi-calendar"></i>&nbsp;Tanggal penyerahan pesanan *</label>
-      <div id="due-date" class="datepicker-here" data-language="en"></div>
+      <div id="due-date-dp" class="datepicker-here" data-language="en"></div>
     </div>
 
     <div class="row" style="margin-top: 10px;">
-      <label><i class="fi-torso"></i>&nbsp;Nama pelanggan *
-        <input type="text">
-      </label>
+      <label><i class="fi-torso"></i>&nbsp;Nama pelanggan *</label>
+      <?php echo $this->Form->text('customer_name'); ?>
     </div>
 
     <div class="row">
-      <label><i class="fi-telephone"></i>&nbsp;No.Telp *
-        <input type="text">
-      </label>
+      <label><i class="fi-telephone"></i>&nbsp;No.Telp *</label>
+      <?php echo $this->Form->text('customer_phone'); ?>
     </div>
 
     <div class="contact-panel-actions">
       <button type="submit" class="button submit-button"><i class="fi-save"></i>&nbsp;Simpan</button>
     </div>
-  </form>
+  <?php echo $this->Form->end(); ?>
 
   <button class="close-button" data-close aria-label="Close modal" type="button">
     <span aria-hidden="true">&times;</span>

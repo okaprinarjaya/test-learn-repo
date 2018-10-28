@@ -10,23 +10,21 @@ class ProjectsController extends AppController
         $project = $this->Projects->newEntity();
         if ($this->request->is('post')) {
 
-            $data = [
-                'project_id' => 'ad10ef13-ff5e-42cf-9612-6118c3862833',
-                'customer_name' => 'Oka Prinarjaya',
-                'customer_phone' => '08174128301',
-                'created' => '2018-10-15 13:00:00',
-                'delivery_date' => '2018-10-20',
-                'stitch_name' => 'Celana panjanng jeans'
-            ];
+            $data = array_merge(
+              $this->request->getData(),
+              ['project_id' => '3dabed27-f1e3-4730-b7ab-03cebea00005']
+            );
 
             $project = $this->Projects->patchEntity($project, $data);
             if ($this->Projects->save($project)) {
                 $this->Flash->success(__('Your article has been saved'));
             } else {
                 $this->Flash->error(__('Unable to add your article.'));
+                debug($project->getErrors());
             }
 
             debug($this->request->getData());
+            debug($data);
         }
         $this->set('project', $project);
     }

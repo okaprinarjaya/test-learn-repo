@@ -41,7 +41,8 @@ class PagesController extends AppController
     public function display(...$path)
     {
         $this->loadModel('Projects');
-        $projects = $this->Projects->find('all');
+        $projects_data = $this->Projects->find('all');
+        $project = $this->Projects->newEntity();
 
         $count = count($path);
         if (!$count) {
@@ -58,7 +59,7 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
-        $this->set(compact('page', 'subpage', 'projects'));
+        $this->set(compact('page', 'subpage', 'projects_data', 'project'));
 
         try {
             $this->render(implode('/', $path));
