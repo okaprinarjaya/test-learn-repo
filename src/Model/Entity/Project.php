@@ -26,12 +26,14 @@ class Project extends Entity
      * @var array
      */
     protected $_accessible = [
-        'customer_name' => true,
-        'customer_phone' => true,
-        'project_created' => true,
-        'project_due_date' => true,
-        'project_name' => true,
-        'project_assignee' => true,
-        'project_status' => true
-    ];
+      'project_id' => true,
+      'customer_name' => true,
+      'customer_phone' => true,
+      'project_created' => true,
+      'project_due_date' => true,
+      'project_name' => true,
+      'project_assignee' => true,
+      'project_status' => true,
+      'deleted' => true
+  ];
 }

@@ -34,6 +34,7 @@ class ProjectsTable extends Table
         parent::initialize($config);
 
         $this->setTable('projects');
+        $this->hasOne('ProjectNotes', ['foreignKey' => 'project_id']);
         $this->setDisplayField('project_id');
         $this->setPrimaryKey('project_id');
 
@@ -59,21 +60,21 @@ class ProjectsTable extends Table
             ->notEmpty('customer_name');
 
         $validator
-            ->scalar('customer_phone')
-            ->maxLength('customer_phone', 16)
-            ->requirePresence('customer_phone', 'create')
-            ->notEmpty('customer_phone');
+          ->scalar('customer_phone')
+          ->maxLength('customer_phone', 16)
+          ->requirePresence('customer_phone', 'create')
+          ->notEmpty('customer_phone');
 
         $validator
-            ->date('project_due_date')
-            ->requirePresence('project_due_date', 'create')
-            ->notEmpty('project_due_date');
+          ->date('project_due_date')
+          ->requirePresence('project_due_date', 'create')
+          ->notEmpty('project_due_date');
 
         $validator
-            ->scalar('project_name')
-            ->maxLength('project_name', 32)
-            ->requirePresence('project_name', 'create')
-            ->notEmpty('project_name');
+          ->scalar('project_name')
+          ->maxLength('project_name', 32)
+          ->requirePresence('project_name', 'create')
+          ->notEmpty('project_name');
 
         return $validator;
     }

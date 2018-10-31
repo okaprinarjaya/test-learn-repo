@@ -162,6 +162,11 @@ $this->layout = false;
     </div>
 
     <div class="row">
+      <label><i class="fi-bookmark"></i>&nbsp;Catatan untuk pesanan *</label>
+      <?php echo $this->Form->textarea('project_notes.notes'); ?>
+    </div>
+
+    <div class="row">
       <label><i class="fi-calendar"></i>&nbsp;Tanggal penyerahan pesanan *</label>
       <div id="due-date-dp" class="datepicker-here" data-language="en"></div>
     </div>

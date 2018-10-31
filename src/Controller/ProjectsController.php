@@ -7,25 +7,29 @@ class ProjectsController extends AppController
 {
     public function add()
     {
-        $project = $this->Projects->newEntity();
-        if ($this->request->is('post')) {
-
-            $data = array_merge(
-              $this->request->getData(),
-              ['project_id' => '3dabed27-f1e3-4730-b7ab-03cebea00005']
-            );
-
-            $project = $this->Projects->patchEntity($project, $data);
-            if ($this->Projects->save($project)) {
-                $this->Flash->success(__('Your article has been saved'));
-            } else {
-                $this->Flash->error(__('Unable to add your article.'));
-                debug($project->getErrors());
-            }
-
-            debug($this->request->getData());
-            debug($data);
+      if ($this->request->is('post')) {
+        $data = $this->request->getData();
+        $project = $this->Projects->newEntity($data);
+        if ($this->Projects->save($project)) {
+          if (
+            isset($data['project_notes']) &&
+            isset($data['project_notes']['notes']) &&
+            $data['project_notes']['notes'] !== ''
+          ) {
+            $this->loadModel('ProjectNotes');
+            $project_notes_data = [
+              'project_id' => $project->project_id,
+              'notes' => $data['project_notes']['notes']
+            ];
+            $project_notes = $this->ProjectNotes->newEntity($project_notes_data);
+            $this->ProjectNotes->save($project_notes);
+          }
+          $this->Flash->success(__('Your article has been saved'));
+        } else {
+          $this->Flash->error(__('Unable to add your article.'));
         }
-        $this->set('project', $project);
+      } else {
+        return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+      }
     }
 }
