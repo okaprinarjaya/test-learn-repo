@@ -35,6 +35,8 @@ class ProjectsTable extends Table
 
         $this->setTable('projects');
         $this->hasOne('ProjectNotes', ['foreignKey' => 'project_id']);
+        $this->hasOne('ProjectProductOther', ['foreignKey' => 'project_id']);
+        $this->belongsTo('Products', ['foreignKey' => 'product_id']);
         $this->setDisplayField('project_id');
         $this->setPrimaryKey('project_id');
 
@@ -71,10 +73,9 @@ class ProjectsTable extends Table
           ->notEmpty('project_due_date');
 
         $validator
-          ->scalar('project_name')
-          ->maxLength('project_name', 32)
-          ->requirePresence('project_name', 'create')
-          ->notEmpty('project_name');
+          ->scalar('product_id')
+          ->requirePresence('product_id', 'create')
+          ->notEmpty('product_id');
 
         return $validator;
     }

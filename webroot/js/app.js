@@ -34,4 +34,10 @@ $(document).ready(function() {
     });
   });
 
+  $('#product-select').change(function () {
+    if (this.value === 'PROD000') {
+      $('#project-product-other').show();
+    }
+  });
+
 });

@@ -4,16 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Project Entity
+ * Product Entity
  *
- * @property string $project_id
- * @property string $customer_name
- * @property string $customer_phone
+ * @property string $product_id
+ * @property string $name
+ * @property int $weight
  * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenDate $delivery_date
- * @property string $stitch_name
+ * @property \Cake\I18n\FrozenTime $modified
  */
-class Project extends Entity
+class Product extends Entity
 {
 
     /**
@@ -26,14 +25,9 @@ class Project extends Entity
      * @var array
      */
     protected $_accessible = [
-      'project_id' => true,
-      'customer_name' => true,
-      'customer_phone' => true,
-      'project_created' => true,
-      'project_due_date' => true,
-      'product_id' => true,
-      'project_assignee' => true,
-      'project_status' => true,
-      'deleted' => true
-  ];
+        'name' => true,
+        'weight' => true,
+        'created' => true,
+        'modified' => true
+    ];
 }

@@ -10,6 +10,7 @@ class ProjectsController extends AppController
       if ($this->request->is('post')) {
         $data = $this->request->getData();
         $project = $this->Projects->newEntity($data);
+
         if ($this->Projects->save($project)) {
           if (
             isset($data['project_notes']) &&
@@ -23,6 +24,20 @@ class ProjectsController extends AppController
             ];
             $project_notes = $this->ProjectNotes->newEntity($project_notes_data);
             $this->ProjectNotes->save($project_notes);
+          }
+
+          if (
+            isset($data['project_product_other']) &&
+            isset($data['project_product_other']['product_name']) &&
+            $data['project_product_other']['product_name'] !== ''
+          ) {
+            $this->loadModel('ProjectProductOther');
+            $project_product_other_data = [
+              'project_id' => $project->project_id,
+              'product_name' => $data['project_product_other']['product_name']
+            ];
+            $project_product_other_ent = $this->ProjectProductOther->newEntity($project_product_other_data);
+            $this->ProjectProductOther->save($project_product_other_ent);
           }
           $this->Flash->success(__('Your article has been saved'));
         } else {

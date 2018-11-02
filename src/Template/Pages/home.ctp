@@ -158,12 +158,23 @@ $this->layout = false;
   ?>
     <div class="row">
       <label><i class="fi-bookmark"></i>&nbsp;Nama pesanan *</label>
-      <?php echo $this->Form->text('project_name'); ?>
+      <?php
+      echo $this->Form->select(
+        'product_id',
+        $products_data,
+        ['empty' => '-- PILIH PRODUK --', 'id' => 'product-select']
+      );
+
+      echo $this->Form->text(
+        'project_product_other.product_name',
+        ['id' => 'project-product-other', 'style' => 'display: none;', 'required' => false]
+      );
+      ?>
     </div>
 
     <div class="row">
       <label><i class="fi-bookmark"></i>&nbsp;Catatan untuk pesanan *</label>
-      <?php echo $this->Form->textarea('project_notes.notes'); ?>
+      <?php echo $this->Form->textarea('project_notes.notes', ['required' => false]); ?>
     </div>
 
     <div class="row">

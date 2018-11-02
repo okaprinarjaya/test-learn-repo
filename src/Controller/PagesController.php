@@ -41,7 +41,13 @@ class PagesController extends AppController
     public function display(...$path)
     {
         $this->loadModel('Projects');
-        $projects_data = $this->Projects->find('all');
+        $this->loadModel('Products');
+        $projects_data = $this->Projects->find('all', ['contain' => ['ProjectNotes', 'ProjectProductOther']]);
+        $products_data = \Cake\Utility\Hash::combine(
+          $this->Products->find('all', ['order' => ['Products.product_id' => 'DESC']])->toArray(),
+          '{n}.product_id',
+          '{n}.name'
+        );
         $project = $this->Projects->newEntity();
 
         $count = count($path);
@@ -59,7 +65,7 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
-        $this->set(compact('page', 'subpage', 'projects_data', 'project'));
+        $this->set(compact('page', 'subpage', 'projects_data', 'project', 'products_data'));
 
         try {
             $this->render(implode('/', $path));
